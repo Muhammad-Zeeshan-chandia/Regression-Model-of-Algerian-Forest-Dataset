@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>FWI Prediction</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center mb-4">FWI Prediction</h1>
+
+        <!-- Form for input -->
+        <form action="{{ url_for('predict_datapoint') }}" method="post">
+            <div class="form-group">
+                <input type="text" name="Temperature" class="form-control" placeholder="Temperature" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="RH" class="form-control" placeholder="Relative Humidity" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="Ws" class="form-control" placeholder="Wind Speed" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="Rain" class="form-control" placeholder="Rain" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="FFMC" class="form-control" placeholder="FFMC" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="DMC" class="form-control" placeholder="DMC" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="ISI" class="form-control" placeholder="ISI" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="Classes" class="form-control" placeholder="Classes" required>
+            </div>
+            <div class="form-group">
+                <input type="text" name="Region" class="form-control" placeholder="Region" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Predict</button>
+        </form>
+
+        <!-- Show prediction result if available -->
+        {% if results %}
+        <div class="mt-4">
+            <h4 class="text-center mb-3">Prediction Results</h4>
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Predicted FWI</td>
+                        <td>{{ results }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
